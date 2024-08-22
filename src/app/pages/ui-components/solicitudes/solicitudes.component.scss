@@ -1,0 +1,28 @@
+.solicitudes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.solicitud-card .small-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.solicitud-card .estado {
+  font-style: italic;
+  text-decoration: underline
+}
+
+.estado.aprobado {
+  color: green;
+}
+
+.estado.rechazado {
+  color: red;
+}
+
+.estado.pendiente {
+  color: orange;
+}

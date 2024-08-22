@@ -1,0 +1,116 @@
+
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title>Formulario de Adopción</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="b-t-1">
+
+    <div class="mb-3">
+      <p><em>Por favor, sé muy sincero al completar este formulario. La información que nos proporcionas es vital para
+          asegurarnos de que el gato encuentre un hogar adecuado y seguro. </em></p>
+      <p><b>Tu honestidad nos ayudará a tomar la mejor decisión para el bienestar del michi y para ti. ¡Gracias por tu
+          compromiso!</b></p>
+    </div>
+
+    <div class="row m-t-12">
+      <div class="col-sm-9">
+        <!--Personal-->
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Nombre Completo</mat-label>
+          <input matInput type="text" placeholder="Daniel Chanci Restrepo" required>
+        </mat-form-field>
+
+        <div class="row m-t-12">
+          <div class="col-sm-6">
+            <mat-form-field appearance="fill" color="primary" class="w-100">
+              <mat-label>Correo electrónico</mat-label>
+              <input matInput type="text" placeholder="dchancir@unal.edu.co" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-3">
+            <mat-form-field appearance="fill" color="primary" class="w-100">
+              <mat-label>Edad</mat-label>
+              <input matInput type="number" placeholder="33" maxlength="3" min="18" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-3">
+            <mat-form-field appearance="fill" color="primary" class="w-100">
+              <mat-label>Teléfono de contacto</mat-label>
+              <input matInput type="text" placeholder="3126963881" maxlength="10" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <mat-form-field appearance="fill" color="primary" class="w-100 m-t-12">
+          <mat-label>Domicilio</mat-label>
+          <input matInput type="text" placeholder="Calle 59A # 63 - 20, Medellín, Antioquia" required>
+        </mat-form-field>
+
+        <!--Vivienda-->
+        <div class="row m-t-12">
+          <div class="col-sm-6">
+            <mat-form-field appearance="fill" color="primary" class="w-100">
+              <mat-label>Tipo de vivienda (casa, apartamento, finca, etc.)</mat-label>
+              <input matInput type="text" placeholder="Residencia estudiantil" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-3">
+            <mat-form-field appearance="fill" color="primary" class="w-100">
+              <mat-label>¿propia o rentada?</mat-label>
+              <mat-select required>
+                <mat-option value="propia">Propia</mat-option>
+                <mat-option value="rentada">Rentada</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-3">
+            <mat-form-field appearance="fill" color="primary" class="w-100">
+              <mat-label>¿Permiten mascotas?</mat-label>
+              <mat-select required>
+                <mat-option value="si">Sí</mat-option>
+                <mat-option value="no">No</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row m-t-12">
+          <div class="col-sm-6">
+            <mat-form-field appearance="fill" color="primary" class="w-100">
+              <mat-label>Número de personas en el hogar y relación con el adoptante</mat-label>
+              <input matInput type="text" placeholder="3, Abuela, Madre, Hermano" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field appearance="fill" color="primary" class="w-100">
+              <mat-label>¿Hay otras mascotas en casa? (Si es así, indicar especie y cantidad)</mat-label>
+              <input matInput type="text" placeholder="1 Perro, 2 Gatos" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row m-t-12">
+          <div class="col-sm-6">
+            <mat-form-field appearance="fill" color="primary" class="w-100">
+              <mat-label>Espacio disponible para el gato (Ej: jardín, balcón, terraza, etc.)</mat-label>
+              <input matInput type="text" placeholder="Patio trasero, Area de juego interior" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+    <mat-card-actions class="d-flex justify-content-center">
+      <button mat-raised-button color="primary" (click)="irAgrax()">Enviar</button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>
