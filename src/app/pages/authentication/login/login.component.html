@@ -1,51 +1,40 @@
 <div class="blank-layout-container justify-content-center align-items-center bg-light-primary">
-  <div
-    class="position-relative row w-100 h-100 bg-gredient justify-content-center"
-  >
+  <div class="position-relative row w-100 h-100 bg-gredient justify-content-center">
     <div class="col-lg-4 d-flex align-items-center">
       <mat-card class="cardWithShadow boxed-auth">
         <mat-card-content class="p-32">
-          <div class="text-center">
-            <a [routerLink]="['/home']">
-            </a>
-          </div>
 
-          <form class="m-t-30">
-            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
-              >Usuario</mat-label
-            >
-            <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput />
+          <form class="m-t-30" [formGroup]="loginForm" autocomplete="off" (ngSubmit)="irAHome()">
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Correo de Usuario</mat-label>
+            <mat-form-field appearance="fill" class="w-100 m-b-12" color="primary">
+              <input matInput formControlName="correo" type="email" required>
+              <mat-error>{{ getErrorMessage('correo') }}</mat-error>
             </mat-form-field>
+
             <!-- password -->
-            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
-              >Contraseña</mat-label
-            >
-            <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput type="password" />
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Contraseña</mat-label>
+            <mat-form-field appearance="fill" class="w-100 m-b-12" color="primary">
+              <input matInput formControlName="contrasena" [type]="hide() ? 'password' : 'text'" required>
+              <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide()">
+                <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error>{{ getErrorMessage('contrasena') }}</mat-error>
             </mat-form-field>
 
-            <div class="d-flex align-items-center m-b-12">
+            <!--             <div class="d-flex align-items-center m-b-12">
               <mat-checkbox color="primary">Recordar este dispositivo</mat-checkbox>
-              <a
-                [routerLink]="['/']"
-                class="text-primary f-w-600 text-decoration-none m-l-auto f-s-14"
-                >Olvidó su contraseña?</a
-              >
-            </div>
-            <a [routerLink]="['/']" mat-flat-button color="primary" class="w-100">
-              Iniciar sesión
-            </a>
+              <a [routerLink]="['/']" class="text-primary f-w-600 text-decoration-none m-l-auto f-s-14">Olvidó su
+                contraseña?</a>
+            </div> -->
+            <mat-card-actions class="d-flex justify-content-center">
+              <button mat-flat-button color="primary" class="w-100">Iniciar sesión</button>
+            </mat-card-actions>
             <!-- input -->
           </form>
-          <span class="d-block f-w-500 text-center m-t-24"
-            >¿No tiene cuenta?
-            <a
-              [routerLink]="['/authentication/register']"
-              class="text-decoration-none text-primary f-w-500 f-s-14"
-            >
-              Crea una cuenta</a
-            >
+          <span class="d-block f-w-500 text-center m-t-24">¿No tiene cuenta?
+            <a [routerLink]="['/authentication/register']" class="text-decoration-none text-primary f-w-500 f-s-14">
+              Crea una cuenta</a>
           </span>
         </mat-card-content>
       </mat-card>
