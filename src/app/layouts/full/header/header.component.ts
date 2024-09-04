@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-header',
@@ -22,5 +24,14 @@ export class HeaderComponent {
 
   showFiller = false;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    public as: AuthService
+  ) {}
+
+  logout(): void {
+    this.as.logout();
+  }
+
+
 }
