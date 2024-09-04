@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { AuthService } from 'src/app/services/auth.service';
 import { ValidacionService } from 'src/app/services/validacion.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class AppSideLoginComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private as: AuthService,
     private vs: ValidacionService
   ) {
     this.loginForm = this.fb.group({
@@ -25,7 +27,7 @@ export class AppSideLoginComponent implements OnInit{
   ngOnInit(): void { }
 
   irAHome() {
-    if (this.loginForm.valid) {
+    if (this.as.login(this.loginForm)) {
       // Aquí puedes manejar la lógica de envío o redirección
       this.router.navigate([`/home`]);
     } else {
