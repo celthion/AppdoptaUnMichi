@@ -52,7 +52,7 @@ export class ValidacionService {
   public dominioUnal(control: AbstractControl): ValidationErrors | null {
     const value: string = control.value.trim().toLowerCase();
 
-    if (!value.endsWith('unal.edu.co')){
+    if (!value.endsWith('@unal.edu.co')){
       return {dominioInvalido: true}
     }
     return null;
