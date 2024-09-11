@@ -1,0 +1,68 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title>{{ currentSolicitud.id ? 'Editar' : 'Agregar'}} Solicitud</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="b-t-1">
+
+    <form [formGroup]="nuevaSolicitudForm" autocomplete="off" (ngSubmit)="registrarSolicitud()">
+    <div class="row m-t-12">
+      <div class="col-sm-4">
+        <!--Personal-->
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Nombre del Michi</mat-label>
+          <input matInput formControlName="michi" type="text" placeholder="Milaneso Fabius Rex I" required>
+          <mat-error>{{ getErrorMessage('michi') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="estado" required>
+            <mat-option value="Aprobado">Aprobado</mat-option>
+            <mat-option value="Pendiente">Pendiente</mat-option>
+            <mat-option value="Rechazado">Rechazado</mat-option>
+          </mat-select>
+          <mat-error>{{ getErrorMessage('estado') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Id Solicitud</mat-label>
+          <input matInput formControlName="id" type="text" placeholder="13" maxlength="3" min="1" required>
+          <mat-error>{{ getErrorMessage('id') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-4">
+        <mat-form-field appearance="fill">
+          <mat-label>Selecciona una fecha</mat-label>
+          <input matInput formControlName="fecha" [matDatepicker]="picker" placeholder="mm/dd/yyyy" [readonly]="true">
+          <mat-error>{{ getErrorMessage('fecha') }}</mat-error>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+    </div>
+
+
+    <!--Comments-->
+    <div class="row m-t-12">
+      <div class="col-sm-6">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Comentarios</mat-label>
+          <textarea matInput formControlName="comentarios" type="text" placeholder="Alergia controlada por dieta"></textarea>
+          <mat-error>{{ getErrorMessage('comentarios') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-card-actions class="d-flex justify-content-center">
+      <button mat-raised-button color="primary">Registrar</button>
+    </mat-card-actions>
+  </form>
+  </mat-card-content>
+</mat-card>
