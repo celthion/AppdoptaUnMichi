@@ -17,9 +17,9 @@ export class AppDonarComponent implements OnInit {
     private vs: ValidacionService
   ) {
     this.donacionForm = this.fb.group({
-      numTarj: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(16)]],
+      numTarj: ['', [Validators.required, Validators.pattern(/^(?:\d{4} ?){1,4}$/), Validators.minLength(16)]],
       titular: ['', [Validators.required, Validators.pattern(/^(?!\s*$)(?!.*\s{2,})[a-zA-Z\s]+$/)]],
-      fVence: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\d{2}$/)]],
+      fVence: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)]],
       codSeg: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(3)]],
       monto: ['', [Validators.required, Validators.min(1), Validators.pattern(/^[1-9][0-9]*$/)]]
     });
