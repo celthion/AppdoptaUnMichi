@@ -19,7 +19,7 @@ export const navItems: NavItem[] = [
     iconName: 'files',
     route: '/ui-components/solicitudes',
   },
-  {
+/*   {
     navCap: 'Auth',
   },
   {
@@ -31,7 +31,7 @@ export const navItems: NavItem[] = [
     displayName: 'Register',
     iconName: 'user-plus',
     route: '/authentication/register',
-  },
+  }, */
 /*   {
     navCap: 'Extra',
   },

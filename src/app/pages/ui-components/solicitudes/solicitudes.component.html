@@ -1,3 +1,10 @@
+<shared-toolbar
+  [buttonText]="'Agregar solicitud'"
+  [searchPlaceholder]="'Buscar Solicitud'"
+  (onSearch)="buscarSolicitud($event)"
+  (onAdd)="agregarSolicitud()">
+</shared-toolbar>
+
 <mat-card class="cardWithShadow theme-card">
   <mat-card-header>
     <mat-card-title>Mis solicitudes</mat-card-title>
@@ -11,6 +18,12 @@
 
     <div class="solicitudes-container m-t-12">
       <div class="solicitud-card" *ngFor="let solicitud of listasolicitudes">
+
+        <shared-admin-buttons
+        (editClicked)="editarSolicitud(solicitud)"
+        (deleteClicked)="borrarSolicitud(solicitud.id)">
+        </shared-admin-buttons>
+
         <mat-card class="small-card">
           <mat-card-header>
             <mat-card-title>Solicitud para {{ solicitud.michi }}</mat-card-title>

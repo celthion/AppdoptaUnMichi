@@ -1,0 +1,105 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title>{{ currentMichi.id ? 'Editar' : 'Agregar'}} Michi</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="b-t-1">
+
+    <form [formGroup]="nuevoMichiForm" autocomplete="off" (ngSubmit)="registrarMichi()">
+    <div class="row m-t-12">
+      <div class="col-sm-4">
+        <!--Personal-->
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Nombre del Michi</mat-label>
+          <input matInput formControlName="nombre" type="text" placeholder="Milaneso Fabius Rex I" required>
+          <mat-error>{{ getErrorMessage('nombre') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Edad: Numero</mat-label>
+          <input matInput formControlName="edadNumero" type="text" placeholder="38" maxlength="2" min="1" required>
+          <mat-error>{{ getErrorMessage('edadNumero') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Edad: Unidad</mat-label>
+          <mat-select formControlName="edadUnidad" required>
+            <mat-option value="mes/es">Mes/es</mat-option>
+            <mat-option value="año/s">Año/s</mat-option>
+          </mat-select>
+          <mat-error>{{ getErrorMessage('edadUnidad') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Sexo</mat-label>
+          <mat-select formControlName="sexo" required>
+            <mat-option value="Macho">Macho</mat-option>
+            <mat-option value="Hembra">Hembra</mat-option>
+          </mat-select>
+          <mat-error>{{ getErrorMessage('sexo') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Esterilizado</mat-label>
+          <mat-select formControlName="esterilizado" required>
+            <mat-option value="Si">Si</mat-option>
+            <mat-option value="No">No</mat-option>
+          </mat-select>
+          <mat-error>{{ getErrorMessage('esterilizado') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div class="row m-t-12">
+      <div class="col-sm-2">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Id</mat-label>
+          <input matInput formControlName="id" type="text" placeholder="13" maxlength="3" min="1" required>
+          <mat-error>{{ getErrorMessage('id') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-10">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Link de la imagen del Michi</mat-label>
+          <input matInput formControlName="imgSrc" type="text" placeholder="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTueZwPaPI30sXT1FOZ0J93tw6yT2qaTsUttA&s" required>
+          <mat-error>{{ getErrorMessage('imgSrc') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <!--Comments-->
+    <div class="row m-t-12">
+      <div class="col-sm-6">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Salud</mat-label>
+          <textarea matInput formControlName="salud" type="text" placeholder="Alergia controlada por dieta" required></textarea>
+          <mat-error>{{ getErrorMessage('salud') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-6">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Personalidad</mat-label>
+          <textarea matInput formControlName="personalidad" type="text" placeholder="Es un atigrado jugueton y vocal. Aventurero y lleno de vida tras ser rescatado" required></textarea>
+          <mat-error>{{ getErrorMessage('personalidad') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-card-actions class="d-flex justify-content-center">
+      <button mat-raised-button color="primary">Registrar</button>
+    </mat-card-actions>
+  </form>
+  </mat-card-content>
+</mat-card>

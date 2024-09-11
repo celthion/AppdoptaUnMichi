@@ -16,7 +16,7 @@
         <div class="col-sm-6">
           <mat-form-field appearance="fill" color="primary" class="w-100">
             <mat-label>Numero de tarjeta</mat-label>
-            <input matInput formControlName="numTarj" type="text" placeholder="1232 0054 0620 7564" maxlength="16"
+            <input matInput [value]="donacionForm.get('numTarj')?.value | formatoNumTarj" formControlName="numTarj" type="text" placeholder="1232 0054 0620 7564" maxlength="19"
               required>
             <mat-error>{{ getErrorMessage('numTarj') }}</mat-error>
           </mat-form-field>
@@ -25,7 +25,7 @@
         <div class="col-sm-6">
           <mat-form-field appearance="fill" color="primary" class="w-100">
             <mat-label>Nombre del tarjetahabiente</mat-label>
-            <input matInput formControlName="titular" type="text" placeholder="John Doe" required>
+            <input matInput formControlName="titular" type="text" placeholder="Juan Sebastian Moreno Ruiz" required>
             <mat-error>{{ getErrorMessage('titular') }}</mat-error>
           </mat-form-field>
         </div>
@@ -35,7 +35,7 @@
         <div class="col-sm-3">
           <mat-form-field appearance="fill" color="primary" class="w-100">
             <mat-label>Fecha de vencimiento</mat-label>
-            <input matInput formControlName="fVence" type="text" placeholder="MM/YY" maxlength="4" required>
+            <input matInput [value]="donacionForm.get('fVence')?.value | formatoFVence " formControlName="fVence" type="text" placeholder="MM/YY" maxlength="5" required>
             <mat-error>{{ getErrorMessage('fVence') }}</mat-error>
           </mat-form-field>
         </div>
@@ -51,7 +51,7 @@
         <div class="col-sm-6">
           <mat-form-field appearance="fill" color="primary" class="w-100">
             <mat-label>Monto</mat-label>
-            <input matInput formControlName="monto" type="text" class="example-right-align" placeholder="100.000" min="0" required>
+            <input matInput formControlName="monto" type="text" placeholder="100000" min="0" required>
             <span matTextPrefix><mat-icon> attach_money</mat-icon></span>
             <mat-error>{{ getErrorMessage('monto') }}</mat-error>
           </mat-form-field>
