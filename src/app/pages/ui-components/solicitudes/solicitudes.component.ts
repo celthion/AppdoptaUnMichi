@@ -62,27 +62,5 @@ export class AppSolicitudesComponent implements OnInit{
   }
 
 
-  listasolicitudes: Solicitud[] = [
-    {
-      id: 1,
-      michi: 'Milo',
-      estado: 'Rechazado',
-      fecha: new Date('2024-08-15'),
-      comentarios: 'El Solicitud ya ha sido adoptado'
-    },
-    {
-      id: 2,
-      michi: 'Simba',
-      estado: 'Pendiente',
-      fecha: new Date('2024-08-18'),
-      comentarios: 'Familia con niños pequeños, revisión en curso.'
-    },
-    {
-      id: 3,
-      michi: 'Luna',
-      estado: 'Aprobado',
-      fecha: new Date('2024-08-20'),
-      comentarios: 'El hogar cuenta con jardín y otras mascotas amigables.'
-    }
-  ]
+  listasolicitudes: Solicitud[] = [ ]
 }

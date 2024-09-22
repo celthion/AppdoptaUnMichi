@@ -9,8 +9,9 @@ import { AppSolicitudesComponent } from './solicitudes/solicitudes.component';
 import { AppFormNuevoMichiComponent } from './michis/formNuevoMichi/formNuevoMichi.component';
 import { AppFormNuevaSolicitudComponent } from './solicitudes/formNuevaSolicitud/formNuevaSolicitud.component';
 
-import { authCA } from 'src/app/guards/auth.guard';
-import { adminCA } from 'src/app/guards/admin.guard';
+import { authGuard } from 'src/app/guards/auth.guard';
+import { adminGuard } from 'src/app/guards/admin.guard';
+
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -19,12 +20,12 @@ export const UiComponentsRoutes: Routes = [
       { path: 'donar', component: AppDonarComponent },
       { path: 'michis', component: AppMichiComponent },
       { path: 'grax/:tipo', component: AppGraciasComponent },
-      { path: 'michis/adopcion/:id', component: AppFormAdopComponent, canActivate: [authCA] },
-      { path: 'michis/agregar', component: AppFormNuevoMichiComponent, canActivate: [authCA, adminCA] },
-      { path: 'michis/edit/:id', component: AppFormNuevoMichiComponent, canActivate: [authCA, adminCA] },
-      { path: 'solicitudes', component: AppSolicitudesComponent, canActivate: [authCA] },
-      { path: 'solicitudes/agregar', component: AppFormNuevaSolicitudComponent, canActivate: [authCA, adminCA] },
-      { path: 'solicitudes/edit/:id', component: AppFormNuevaSolicitudComponent, canActivate: [authCA, adminCA] },
+      { path: 'michis/adopcion/:id', component: AppFormAdopComponent, canActivate: [authGuard] },
+      { path: 'michis/agregar', component: AppFormNuevoMichiComponent, canActivate: [authGuard, adminGuard] },
+      { path: 'michis/edit/:id', component: AppFormNuevoMichiComponent, canActivate: [authGuard, adminGuard] },
+      { path: 'solicitudes', component: AppSolicitudesComponent, canActivate: [authGuard] },
+      { path: 'solicitudes/agregar', component: AppFormNuevaSolicitudComponent, canActivate: [authGuard, adminGuard] },
+      { path: 'solicitudes/edit/:id', component: AppFormNuevaSolicitudComponent, canActivate: [authGuard, adminGuard] },
     ],
   },
 ];

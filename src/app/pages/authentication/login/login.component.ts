@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ValidacionService } from 'src/app/services/validacion.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,13 +28,15 @@ export class AppSideLoginComponent implements OnInit{
   ngOnInit(): void { }
 
   irAHome() {
-    if (this.as.login(this.loginForm)) {
-      // Aquí puedes manejar la lógica de envío o redirección
-      this.router.navigate([`/home`]);
-    } else {
-      console.log("Formulario inválido, por favor revise los campos.");
-    }
+    this.as.login(this.loginForm).subscribe((success: boolean) => {
+      if (success) {
+        this.router.navigate(['/home']);
+      } else {
+        console.log("Formulario inválido, por favor revise los campos.");
+      }
+    });
   }
+  
 
 
   getErrorMessage(controlName: string): string {

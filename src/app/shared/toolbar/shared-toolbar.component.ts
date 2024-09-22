@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class SharedToolbarComponent implements OnInit {
   constructor(
-    public as: AuthService
+    public authService: AuthService
   ) { }
 
   @Input() buttonText: string = 'Agregar'; // Texto del botón

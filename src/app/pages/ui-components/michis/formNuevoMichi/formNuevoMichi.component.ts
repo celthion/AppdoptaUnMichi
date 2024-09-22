@@ -28,7 +28,7 @@ export class AppFormNuevoMichiComponent implements OnInit {
   )
   {
     this.nuevoMichiForm = this.fb.group({
-      id: ['',[Validators.required, Validators.pattern(/^[0-9]*$/)]],
+      id: [''],
       imgSrc: ['', Validators.required],
       nombre: ['', [Validators.required, Validators.pattern(/^(?!\s*$)(?!.*\s{2,})[a-zA-Z\s]+$/)]],
       edadNumero: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.min(1), Validators.max(38)]],

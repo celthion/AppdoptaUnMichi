@@ -27,10 +27,11 @@ export class AppFormNuevaSolicitudComponent implements OnInit {
   )
   {
     this.nuevaSolicitudForm = this.fb.group({
-      id: ['',[Validators.required, Validators.pattern(/^[0-9]*$/)]],
+      id: ['',[Validators.required]],
       michi: ['', [Validators.required, Validators.pattern(/^(?!\s*$)(?!.*\s{2,})[a-zA-Z\s]+$/)]],
       estado: ['', Validators.required],
       fecha: ['', [Validators.required, ]],
+      comentarios: ['', [Validators.required, ]]
     })
   }
 

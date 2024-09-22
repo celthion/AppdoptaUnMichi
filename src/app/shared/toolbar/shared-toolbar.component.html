@@ -14,7 +14,7 @@
   </div>
 
   <!-- Botón para agregar nueva tarjeta en la parte derecha -->
-  <button mat-flat-button color="accent" *ngIf="this.as.isAdminUser()" (click)="agregar()">
+  <button mat-flat-button color="accent" *ngIf="(authService.isAdminUser() | async)" (click)="agregar()">
     <mat-icon>add</mat-icon> {{ buttonText }}
   </button>
 </div>

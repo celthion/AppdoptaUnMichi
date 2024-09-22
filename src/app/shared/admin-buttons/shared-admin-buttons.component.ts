@@ -12,7 +12,7 @@ export class SharedButtonsComponent implements OnInit {
   @Output() deleteClicked = new EventEmitter<void>();
 
   constructor(
-    public as: AuthService
+    public authService: AuthService
   ) { }
 
   onEdit() {

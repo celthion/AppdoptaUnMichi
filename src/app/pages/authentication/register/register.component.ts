@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 
 import { ValidacionService } from 'src/app/services/validacion.service';
-
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -14,7 +14,8 @@ export class AppSideRegisterComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private vs: ValidacionService
+    private vs: ValidacionService,
+    private authService: AuthService
   ) {
     this.registerForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.pattern(/^(?!\s*$)(?!.*\s{2,})[a-zA-Z\s]+$/)]],
@@ -33,8 +34,15 @@ export class AppSideRegisterComponent implements OnInit{
 
   irALogin() {
     if (this.registerForm.valid) {
-      // Aquí puedes manejar la lógica de envío o redirección
-      this.router.navigate([`/authentication/login`]);
+      this.authService.register(this.registerForm).subscribe((success: boolean) => {
+        if (success) {
+          // Registration successful, redirect to login
+          this.router.navigate(['/authentication/login']);
+        } else {
+          // Registration failed, show error message
+          console.log("Registration failed, please try again.");
+        }
+      });
     } else {
       console.log("Formulario inválido, por favor revise los campos.");
     }

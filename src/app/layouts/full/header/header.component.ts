@@ -26,11 +26,11 @@ export class HeaderComponent {
 
   constructor(
     public dialog: MatDialog,
-    public as: AuthService
+    public authService: AuthService
   ) {}
 
   logout(): void {
-    this.as.logout();
+    this.authService.logout();
   }
 
 

@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { Observable, tap, of, map, catchError } from 'rxjs';
+
+import { Observable, tap, of, map, catchError,switchMap  } from 'rxjs';
 
 import { Usuario } from '../interfaces/usuario.interface';
 
@@ -16,40 +17,112 @@ export class AuthService {
   private isAuthenticated = false;
   private isAdmin = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { this.getUserInfo().subscribe(); }
 
-  login( form: FormGroup ):boolean {
-    // http.post('login',{ email, password });
-    if (form.valid){
-      this.isAuthenticated = true;
-      // Suponiendo que la información de administrador se determina a partir del formulario
-      this.isAdmin = form.value.correo === 'ay@unal.edu.co'; // Ejemplo simple de verificación de administrador
-
-      localStorage.setItem('isAuthenticated', 'true'); // Guardar el estado en el almacenamiento local
-      localStorage.setItem('isAdmin', this.isAdmin.toString()); // Guardar el estado de administrador en el almacenamiento local
-
-      this.router.navigate(['/home']); // Redirigir al usuario a la página principal
-      return true
-    }
-    return false
+  
+  getUserInfo(): Observable<any> {
+    return this.http.get<any>('/api/protected', { withCredentials: true }).pipe(
+      tap(response => {
+        if (response.isAuthenticated) {
+          this.isAuthenticated = true;
+          this.isAdmin = response.isAdmin;
+        } else {
+          this.isAuthenticated = false;
+          this.isAdmin = false;
+        }
+      }),
+      catchError(error => {
+        console.error('Failed to get user info', error);
+        this.isAuthenticated = false;
+        this.isAdmin = false;
+        return of(null);
+      })
+    );
+  }
+  
+  
+  login(form: FormGroup): Observable<boolean> {
+    const correo = form.value.correo;
+    const password = form.value.contrasena;
+  
+    return this.http.post<any>('/api/login', { correo, password }, { withCredentials: true }).pipe(
+      switchMap(response => {
+        if (response.success) {
+          return this.getUserInfo().pipe(
+            map(() => {
+              this.router.navigate(['/home']);
+              return true;
+            })
+          );
+        } else {
+          this.isAuthenticated = false;
+          this.isAdmin = false;
+          return of(false);
+        }
+      }),
+      catchError(error => {
+        console.error('Login failed', error);
+        this.isAuthenticated = false;
+        this.isAdmin = false;
+        return of(false);
+      })
+    );
   }
 
 
   logout(): void {
-    this.isAuthenticated = false;
-    this.isAdmin = false; // Restablecer el estado de administrador
-    localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('isAdmin');
-    this.router.navigate(['/home']); // Redirigir al usuario a la página de inicio de sesión
+    this.http.post('/api/logout', {}, { withCredentials: true }).subscribe(
+      () => {
+        this.isAuthenticated = false;
+        this.isAdmin = false;
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('isAdmin');
+        this.router.navigate(['/home']);
+      },
+      error => {
+        console.error('Logout failed', error);
+      }
+    );
+  }
+  isLoggedIn(): Observable<boolean> {
+    if (this.isAuthenticated || localStorage.getItem('isAuthenticated') === 'true') {
+      return of(true);
+    } else {
+      return this.getUserInfo().pipe(
+        map(response => response ? response.isAuthenticated : false)
+      );
+    }
+  }
+  
+  isAdminUser(): Observable<boolean> {
+    if (this.isAdmin || localStorage.getItem('isAdmin') === 'true') {
+      return of(true);
+    } else {
+      return this.getUserInfo().pipe(
+        map(response => response ? response.isAdmin : false)
+      );
+    }
   }
 
-    // Método para verificar si el usuario está autenticado
-    isLoggedIn(): boolean {
-      return this.isAuthenticated || localStorage.getItem('isAuthenticated') === 'true';
-    }
+  register(form: FormGroup): Observable<boolean> {
+    const nombre = form.value.nombre;
+    const correo = form.value.correo;
+    const contrasena = form.value.contrasena;
 
-    isAdminUser(): boolean {
-      return this.isAdmin || localStorage.getItem('isAdmin') === 'true';
-    }
+    return this.http.post<any>('/api/register', { nombre, correo, contrasena }).pipe(
+      map(response => {
+        if (response.success) {
+          // Optionally, you might log the user in automatically here
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError(error => {
+        console.error('Registration failed', error);
+        return of(false);
+      })
+    );
+  }
 
 }

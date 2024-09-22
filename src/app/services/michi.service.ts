@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MichiService {
-  private apiUrl: string = '';
+  private apiUrl: string = '/api/michis';
 
   constructor(
     private http: HttpClient
@@ -21,7 +21,7 @@ export class MichiService {
 
   // Método para obtener un michi por su ID
   getMichiById(id: number): Observable<Michi|undefined> {
-    return this.http.get<Michi>(`${this.apiUrl}/${id}`);
+    return this.http.get<Michi>(`${this.apiUrl}?id=${id}`);
   }
 
   // Método para buscar michis por nombre
@@ -36,12 +36,12 @@ export class MichiService {
 
   // Método para actualizar un michi existente
   updateMichi(michi: Michi): Observable<Michi> {
-    return this.http.put<Michi>(`${this.apiUrl}/${michi.id}`, michi);
+    return this.http.put<Michi>(`${this.apiUrl}?id=${michi.id}`, michi);
   }
 
   // Método para eliminar un michi por su ID
   deleteMichi(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}?id=${id}`);
   }
 
 }
