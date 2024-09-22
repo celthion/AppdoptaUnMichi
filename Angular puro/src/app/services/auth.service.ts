@@ -75,8 +75,7 @@ export class AuthService {
       () => {
         this.isAuthenticated = false;
         this.isAdmin = false;
-        localStorage.removeItem('isAuthenticated');
-        localStorage.removeItem('isAdmin');
+
         this.router.navigate(['/home']);
       },
       error => {
@@ -85,7 +84,7 @@ export class AuthService {
     );
   }
   isLoggedIn(): Observable<boolean> {
-    if (this.isAuthenticated || localStorage.getItem('isAuthenticated') === 'true') {
+    if (this.isAuthenticated ) {
       return of(true);
     } else {
       return this.getUserInfo().pipe(
@@ -95,7 +94,7 @@ export class AuthService {
   }
   
   isAdminUser(): Observable<boolean> {
-    if (this.isAdmin || localStorage.getItem('isAdmin') === 'true') {
+    if (this.isAdmin ) {
       return of(true);
     } else {
       return this.getUserInfo().pipe(
