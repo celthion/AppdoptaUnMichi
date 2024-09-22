@@ -13,6 +13,7 @@ export class SharedToolbarComponent implements OnInit {
   ) { }
 
   @Input() buttonText: string = 'Agregar'; // Texto del botón
+  @Input() showButton: boolean = true;
   @Input() searchPlaceholder: string = 'Buscar'; // Placeholder del cuadro de búsqueda
 
   @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();

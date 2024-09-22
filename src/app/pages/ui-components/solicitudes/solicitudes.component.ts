@@ -39,9 +39,9 @@ export class AppSolicitudesComponent implements OnInit{
     });
   }
 
-  agregarSolicitud(): void {
+/*   agregarSolicitud(): void {
     this.router.navigate([`/ui-components/solicitudes/agregar`]);
-  }
+  } */
 
   editarSolicitud(Solicitud: any): void {
     this.router.navigate([`/ui-components/solicitudes/edit`, Solicitud.id]);
@@ -62,5 +62,7 @@ export class AppSolicitudesComponent implements OnInit{
   }
 
 
-  listasolicitudes: Solicitud[] = [ ]
+  listasolicitudes: Solicitud[] = [
+
+  ]
 }

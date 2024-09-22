@@ -24,7 +24,7 @@ export const UiComponentsRoutes: Routes = [
       { path: 'michis/agregar', component: AppFormNuevoMichiComponent, canActivate: [authGuard, adminGuard] },
       { path: 'michis/edit/:id', component: AppFormNuevoMichiComponent, canActivate: [authGuard, adminGuard] },
       { path: 'solicitudes', component: AppSolicitudesComponent, canActivate: [authGuard] },
-      { path: 'solicitudes/agregar', component: AppFormNuevaSolicitudComponent, canActivate: [authGuard, adminGuard] },
+      // { path: 'solicitudes/agregar', component: AppFormNuevaSolicitudComponent, canActivate: [authGuard, adminGuard] },
       { path: 'solicitudes/edit/:id', component: AppFormNuevaSolicitudComponent, canActivate: [authGuard, adminGuard] },
     ],
   },

@@ -28,7 +28,7 @@ export class AppFormNuevoMichiComponent implements OnInit {
   )
   {
     this.nuevoMichiForm = this.fb.group({
-      id: [''],
+      id: [{value: '', disabled: true}],
       imgSrc: ['', Validators.required],
       nombre: ['', [Validators.required, Validators.pattern(/^(?!\s*$)(?!.*\s{2,})[a-zA-Z\s]+$/)]],
       edadNumero: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.min(1), Validators.max(38)]],
@@ -52,6 +52,8 @@ export class AppFormNuevoMichiComponent implements OnInit {
         return;
       }
       this.nuevoMichiForm.reset(michi);
+      this.nuevoMichiForm.get('id')?.setValue(michi.id);
+      this.nuevoMichiForm.get('id')?.enable();
       return;
     })
   }

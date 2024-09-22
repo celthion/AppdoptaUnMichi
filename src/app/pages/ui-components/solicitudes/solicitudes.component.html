@@ -1,8 +1,7 @@
 <shared-toolbar
-  [buttonText]="'Agregar solicitud'"
+  [showButton]="false"
   [searchPlaceholder]="'Buscar Solicitud'"
-  (onSearch)="buscarSolicitud($event)"
-  (onAdd)="agregarSolicitud()">
+  (onSearch)="buscarSolicitud($event)">
 </shared-toolbar>
 
 <mat-card class="cardWithShadow theme-card">

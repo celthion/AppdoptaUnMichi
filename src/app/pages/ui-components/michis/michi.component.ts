@@ -64,5 +64,7 @@ export class AppMichiComponent implements OnInit {
     this.router.navigate([`/ui-components/michis/adopcion`, michiId]);
   }
 
-  michislista: Michi[] = []
+  michislista: Michi[] = [
+
+  ]
 }
