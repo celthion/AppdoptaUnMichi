@@ -1,0 +1,20 @@
+<div class="toolbar d-flex align-items-center justify-content-between">
+  <!-- Contenedor para el cuadro de búsqueda y el botón de filtro en la parte izquierda -->
+  <div class="d-flex align-items-center">
+    <!-- Cuadro de búsqueda -->
+    <mat-form-field appearance="fill" class="me-2">
+      <mat-label>{{ searchPlaceholder }}</mat-label>
+      <input matInput autocomplete="off" [(ngModel)]="searchTerm">
+    </mat-form-field>
+
+    <!-- Botón de búsqueda -->
+    <button mat-icon-button (click)="buscar()" aria-label="Buscar" class="me-2">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+
+  <!-- Botón para agregar nueva tarjeta en la parte derecha -->
+  <button mat-flat-button color="accent" *ngIf="showButton && (authService.isAdminUser() | async)" (click)="agregar()">
+    <mat-icon>add</mat-icon> {{ buttonText }}
+  </button>
+</div>

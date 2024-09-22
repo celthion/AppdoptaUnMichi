@@ -1,0 +1,181 @@
+<!-- <mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title>{{ currentSolicitud.id ? 'Editar' : 'Agregar'}} Solicitud</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="b-t-1">
+
+    <form [formGroup]="nuevaSolicitudForm" autocomplete="off" (ngSubmit)="registrarSolicitud()">
+    <div class="row m-t-6">
+      <div class="col-sm-4">
+
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Nombre del Michi</mat-label>
+          <input matInput formControlName="michi" type="text" placeholder="Milaneso Fabius Rex I" required>
+          <mat-error>{{ getErrorMessage('michi') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="estado" required>
+            <mat-option value="Aprobado">Aprobado</mat-option>
+            <mat-option value="Pendiente">Pendiente</mat-option>
+            <mat-option value="Rechazado">Rechazado</mat-option>
+          </mat-select>
+          <mat-error>{{ getErrorMessage('estado') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+    </div>
+
+
+
+    <div class="row m-t-6">
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Id Solicitud</mat-label>
+          <input matInput formControlName="id" type="text" placeholder="13"  min="1" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-4">
+        <mat-form-field appearance="fill">
+          <mat-label>Selecciona una fecha</mat-label>
+          <input matInput formControlName="fecha" [matDatepicker]="picker" placeholder="mm/dd/yyyy" [readonly]="true">
+          <mat-error>{{ getErrorMessage('fecha') }}</mat-error>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+    </div>
+
+    <div class="row m-t-6">
+      <div class="col-sm-6">
+        <mat-form-field appearance="fill" color="primary" class="w-100">
+          <mat-label>Comentarios</mat-label>
+          <textarea matInput formControlName="comentarios" type="text" placeholder="Alergia controlada por dieta"></textarea>
+          <mat-error>{{ getErrorMessage('comentarios') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-card-actions class="d-flex justify-content-center">
+      <button mat-raised-button color="primary">Registrar</button>
+    </mat-card-actions>
+  </form>
+  </mat-card-content>
+</mat-card>
+ -->
+
+ <mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title>{{ currentSolicitud.id ? 'Editar' : 'Agregar' }} Solicitud</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="b-t-1">
+    <div class="row">
+      <!-- Mitad izquierda: Información del Solicitante -->
+      <div class="col-md-6">
+        <mat-card class="solicitante-info">
+          <mat-card-header>
+            <mat-card-title>{{ currentSolicitud.solicitud_nombre }}</mat-card-title>
+            <mat-card-subtitle>ID: {{ currentSolicitud.id_solicitante }}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p><strong>Nombre del Solicitante:</strong> {{ currentSolicitud.nombre_solicitante }}</p>
+            <p><strong>Correo:</strong> {{ currentSolicitud.correo_solicitante }}</p>
+            <p><strong>Edad:</strong> {{ currentSolicitud.edad_solicitante }} años</p>
+            <p><strong>Teléfono:</strong> {{ currentSolicitud.telefono_solicitante }}</p>
+            <p><strong>Domicilio:</strong> {{ currentSolicitud.domicilio_solicitante }}</p>
+            <p><strong>Tipo de Vivienda:</strong> {{ currentSolicitud.tipo_vivienda }}</p>
+            <p><strong>Propia o Rentada:</strong> {{ currentSolicitud.propia_rentada }}</p>
+            <p><strong>¿Permiten Mascotas?:</strong> {{ currentSolicitud.permiten_mascotas }}</p>
+            <p><strong>Número de Personas en el Hogar:</strong> {{ currentSolicitud.numero_personas }}</p>
+            <p><strong>Otras Mascotas:</strong> {{ currentSolicitud.otras_mascotas }}</p>
+            <p><strong>Espacio Disponible:</strong> {{ currentSolicitud.espacio }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Mitad derecha: Formulario -->
+      <div class="col-md-6">
+        <form [formGroup]="nuevaSolicitudForm" autocomplete="off" (ngSubmit)="registrarSolicitud()">
+          <!-- Primera Fila -->
+          <div class="row m-t-6">
+            <!-- Nombre del Michi: 2/3 de la fila -->
+            <div class="col-md-8">
+              <mat-form-field appearance="fill" color="primary" class="w-100">
+                <mat-label>ID del Michi</mat-label>
+                <input matInput formControlName="michi" type="text" placeholder="Milaneso Fabius Rex I" [readonly]="true" required>
+                <mat-error>{{ getErrorMessage('michi') }}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Estado: 1/3 de la fila -->
+            <div class="col-md-4">
+              <mat-form-field appearance="fill" color="primary" class="w-100">
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="estado" required>
+                  <mat-option value="Aprobado">Aprobado</mat-option>
+                  <mat-option value="Pendiente">Pendiente</mat-option>
+                  <mat-option value="Rechazado">Rechazado</mat-option>
+                </mat-select>
+                <mat-error>{{ getErrorMessage('estado') }}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- Segunda Fila -->
+          <div class="row m-t-6">
+            <!-- Fecha: 2/3 de la fila -->
+            <div class="col-md-8">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Fecha</mat-label>
+                <input matInput
+                       formControlName="fecha"
+                       placeholder="mm/dd/yyyy"
+                       [matDatepicker]="picker" 
+                       readonly>
+                <mat-error>{{ getErrorMessage('fecha') }}</mat-error>
+                <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="true"></mat-datepicker-toggle>
+                <mat-datepicker #picker disabled="true"></mat-datepicker>
+              </mat-form-field>
+            </div>
+            
+            <!-- ID: 1/3 de la fila -->
+            <div class="col-md-4">
+              <mat-form-field appearance="fill" color="primary" class="w-100">
+                <mat-label>Id Solicitud</mat-label>
+                <input matInput formControlName="id" type="text" placeholder="13" min="1" [readonly]="true" required>
+                <mat-error>{{ getErrorMessage('id') }}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- Tercera Fila (Comentarios ocupa 100%) -->
+          <div class="row m-t-6">
+            <div class="col-md-12">
+              <mat-form-field appearance="fill" color="primary" class="w-100">
+                <mat-label>Comentarios</mat-label>
+                <textarea matInput formControlName="comentarios" type="text" placeholder="Alergia controlada por dieta"></textarea>
+                <mat-error>{{ getErrorMessage('comentarios') }}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <mat-card-actions class="d-flex justify-content-center">
+            <button mat-raised-button color="primary" type="submit">Registrar</button>
+          </mat-card-actions>
+        </form>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+
+

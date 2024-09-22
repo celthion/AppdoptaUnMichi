@@ -1,0 +1,8 @@
+<div class="ud-buttons" *ngIf="(authService.isAdminUser() | async)">
+  <button mat-icon-button color="accent" (click)="onEdit()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-icon-button color="warn" (click)="onDelete()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
